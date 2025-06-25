@@ -68,3 +68,205 @@ body{
   background-color: #FEC0CE;
   border-radius: 20px;
 }
+
+/* add task container or formm design  */
+.add-task-container {
+  width: 380px;
+  margin: 40px auto;
+  padding: 30px;
+  background-color: #F9F3F5; /* Light background for better contrast */
+  border: 1px solid #5b1054; /* Adjusted border color */
+  border-radius: 40px; /* Slightly increased border radius */
+  box-shadow: 0 4px 2px rgba(0, 0, 0, 0.15); /* Softer shadow */
+}
+
+.add-task-title {
+  color: #5B2E4D; /* Darker title color for better readability */
+  text-align: center;
+  font-size: 2rem; /* Increased font size for emphasis */
+  margin-bottom: 20px;
+}
+
+.add-task-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-control {
+  width: 80%;
+  padding: 12px; /* Increased padding for comfort */
+  font-size: 16px;
+  border: 1px solid #811c77;
+  border-radius: 5px;
+  color: #8c216a; /* Darker text color for better visibility */
+  transition: border-color 0.3s, box-shadow 0.3s; /* Smooth transition on focus */
+}
+
+.form-control:focus {
+  outline: none;
+  border-color: #8B5FBF; /* Focus border color */
+  box-shadow: 0 0 8px rgba(139, 95, 191, 0.5); /* Soft focus shadow */
+}
+
+.btn {
+  width: 90%;
+  padding: 12px 10px; /* Increased button padding */
+  font-size: 16px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  background-color: #8B5FBF; /* Button background color */
+  color: #fff;
+  transition: background-color 0.3s; /* Smooth transition on hover */
+}
+
+.btn:hover {
+  background-color: #643A71; /* Darker shade on hover */
+}
+
+.alert {
+  width: 85%;
+  padding: 12px; /* Increased padding for alerts */
+  margin-top: 14px;
+  border-radius: 12px;
+  margin-bottom: 20px;
+  font-weight: bold; /* Bold text for alerts */
+}
+
+.alert-danger {
+  background-color: #D183C9; /* Danger alert color */
+  color: #fff;
+}
+
+.alert-success {
+  background-color: #267955; /* Success alert color */
+  color: #fff;
+}
+
+@media (max-width: 768px) {
+  .add-task-container {
+    margin: 20px auto;
+    padding: 15px; /* Adjusted padding for smaller screens */
+  }
+
+  .add-task-title {
+    font-size: 1.25em; /* Responsive title size */
+  }
+}
+
+
+/*  All Task s design dash board s  */
+.task-container {
+  
+  display: grid; /* Use grid layout */
+  grid-template-columns: repeat(3, 1fr); /* Three equal columns */
+  gap: 20px; /* Space between task cards */
+  max-width: 100%; /* Full width for responsiveness */
+  margin: auto;
+}
+
+.task-card {
+  background-color: #F9F3F5; /* Light background for contrast */
+  border: 1px solid #D183C9; /* Border color */
+  border-radius: 25px;
+  padding: 24px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  display: flex; /* Flex layout for card contents */
+  flex-direction: column; /* Stack contents vertically */
+}
+
+.task-title {
+  color: #5B2E4D; /* Darker title color */
+  margin: 0;
+}
+
+.task-description {
+  color: #5B2E4D; /* Consistent text color */
+  margin: 10px 0;
+}
+
+.task-actions {
+  display: flex;
+  justify-content: space-between; /* Space out action buttons */
+}
+
+.action-btn {
+  background-color: #8B5FBF; /* Button background color */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 15px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  transition: background-color 0.3s;
+}
+
+.action-btn:hover {
+  background-color: #643A71; /* Darker shade on hover */
+}
+
+.action-btn svg {
+  margin-right: 5px; /* Space between icon and text */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .task-container {
+    grid-template-columns: repeat(2, 1fr); /* Two columns on smaller screens */
+  }
+}
+
+@media (max-width: 480px) {
+  .task-container {
+    grid-template-columns: 1fr; /* One column on very small screens */
+  }
+}
+
+
+/*  add or show new dive for confirmation  */
+
+.confirmation-dialog {
+  position: fixed;
+  top: 50%;
+  left: 60%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 20px;
+  border: 1px solid #E3879E;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.confirmation-dialog button {
+  margin: 10px;
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.confirmation-dialog .delete-btn {
+  background-color: #E3879E;
+  color: #fff;
+}
+
+.confirmation-dialog .cancel-btn {
+  background-color: #8B5FBF;
+  color: #fff;
+}
+
+.confirmation-dialog .delete-btn:hover {
+  background-color: #643A71;
+}
+
+.confirmation-dialog .cancel-btn:hover {
+  background-color: #643A71;
+}
+
