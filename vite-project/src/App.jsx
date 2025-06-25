@@ -1,15 +1,30 @@
 import React from 'react'
-import { BrowserRouter, Routes ,Route } from 'react-router-dom'
- import { Sidebar,SignUpForm,Login } from '../Componenets/AllComponents'
- 
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import {  Alltask ,SignUpForm, Login, AdminDash ,  Addtask,Logout,Employees,Setting } from '../Componenets/AllComponents'
+
 export default function App() {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/signup" element={<SignUpForm />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/sidebar" element={<Sidebar />} />
+
+        { /* Admin Dashboard Route */}
+
+       <Route exact path="/" element={<AdminDash />} >
+         <Route index path='/addtask' element={<Addtask />} />
+         <Route path='/alltask' element={<Alltask />} />
+         <Route path="/logout" element={<Logout />} />
+         <Route path="/settings" element={<Setting />} />
+         <Route path="/employees" element={<Employees />} />
+      </Route>
+
+
+        { /* Other Routes can be added here */ }
       </Routes>
+
+
     </BrowserRouter>
+
   )
 }

@@ -14,12 +14,16 @@ export default function Login() {
 
   return (
     <>
-    <h1>Login</h1>
-    <form>
+    <div  >
+
+    
+    <h1 >Login</h1>
+    <form >
     {
      form.map((items,i)=>(
         <div>
             <input
+
                 type={items.type}
                 name={items.name}
                 placeholder={items.placeholder}
@@ -30,6 +34,7 @@ export default function Login() {
      ))}
      <button>Submit </button>
     </form>
+    </div>
     </>
   )
 }

@@ -1,3 +1,11 @@
 export { default as Sidebar } from './Admin/SidebarAdmin';
 export { default as SignUpForm } from './Userenter/Signup';
 export { default as Login } from './Userenter/Login';
+export { default as AdminDash } from './Admin/AdminDash';
+export { default as SidebarAdmin } from './Admin/SidebarAdmin';
+export { default as AdminContent } from './Admin/AdminContent';
+export { default as Addtask } from './Admin/pages/Addtask';
+export { default as Logout } from './Admin/pages/Logout';
+export { default as Setting } from './Admin/pages/Setting';
+export { default as Employees } from './Admin/pages/Employees';
+export { default as Alltask } from './Admin/pages/Alltask';

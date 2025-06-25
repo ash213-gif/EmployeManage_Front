@@ -1,35 +1,18 @@
 import React from 'react';
+import { FaTasks, FaPlus, FaUsers, FaCog, FaSignOutAlt } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 
-const Sidebar = () => {
+export default function SidebarAdmin() {
   return (
-    <div className="sidebar" style={{ backgroundColor: '#0D1B2A' }}>
-      <div className="sidebar-header" style={{ backgroundColor: '#1B263B', color: '#E0E1DD' }}>
-        <h2>Task Manager</h2>
-      </div>
-      <ul className="sidebar-menu">
-        <li style={{ backgroundColor: '#415A77', color: '#E0E1DD' }}>
-          <a href="#" style={{ color: '#E0E1DD' }}>
-            Dashboard
-          </a>
-        </li>
-        <li style={{ backgroundColor: '#778DA9', color: '#0D1B2A' }}>
-          <a href="#" style={{ color: '#0D1B2A' }}>
-            Tasks
-          </a>
-        </li>
-        <li style={{ backgroundColor: '#415A77', color: '#E0E1DD' }}>
-          <a href="#" style={{ color: '#E0E1DD' }}>
-            Reports
-          </a>
-        </li>
-        <li style={{ backgroundColor: '#778DA9', color: '#0D1B2A' }}>
-          <a href="#" style={{ color: '#0D1B2A' }}>
-            Settings
-          </a>
-        </li>
+    <div className="Adminside">
+      <h2>Admin Panel</h2>
+      <ul>
+        <li><Link to="/alltask"><FaTasks /> All Tasks</Link></li>
+        <li><Link to="/addtask"><FaPlus /> Add Task</Link></li>
+        <li><Link to="/employees"><FaUsers /> All Employees</Link></li>
+        <li><Link to="/settings"><FaCog /> Settings</Link></li>
+        <li><Link to="/logout"><FaSignOutAlt /> Logout</Link></li>
       </ul>
     </div>
   );
-};
-
-export default Sidebar;
+}
