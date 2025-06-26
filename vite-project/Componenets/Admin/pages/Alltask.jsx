@@ -62,7 +62,7 @@ const response = await axios.post( `${GlobarRenderUrl}/updateTask/${getId}` )
 
             {
               show &&
-              <div>
+              <div className="action-btn" >
                 <p>Are you sure you want to update  this task?</p>
                 <button onClick={UpdateTask} className="delete-btn">Update  Task</button>
                 <button onClick={() => setshow(false)} className="cancel-btn">Cancel</button>
