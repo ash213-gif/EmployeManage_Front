@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-
+import { GlobarRenderUrl } from '../../../GlobalUrl';
 export default function Addtask() {
   const [task, setTask] = useState({
     title: '',
@@ -24,7 +24,7 @@ export default function Addtask() {
     setError(null);
     setSuccess(null);
     try {
-      const response = await axios.post('http://localhost:4040/createTask', task);
+      const response = await axios.post(`${GlobarRenderUrl}/createTask`, task);
       if (response.data.status === true) {
         setSuccess(response.data.msg);
         setTask({ title: '', description: '' });

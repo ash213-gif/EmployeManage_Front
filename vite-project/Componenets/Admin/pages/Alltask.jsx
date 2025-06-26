@@ -18,8 +18,8 @@ export default function Alltask() {
 const getId = sessionStorage.getItem('UserId')
   const HandleDelete = async () => {
     try {
-      
-      const response = await axios.delete(`http://localhost:4040/deleteTask/${getId}`)
+
+      const response = await axios.delete(`${GlobarRenderUrl}/deleteTask/${getId}`)
       if (response.data.status === 200 || response.data.status === true) {
         setshow(false)
       }
@@ -31,7 +31,7 @@ const getId = sessionStorage.getItem('UserId')
 
   const UpdateTask =async ()=>{
     try{
-const response = await axios.post( `http://localhost:4040/updateTask${getId}` )
+const response = await axios.post( `${GlobarRenderUrl}/updateTask/${getId}` )
     }catch(error){
       console.log(object);
     }
