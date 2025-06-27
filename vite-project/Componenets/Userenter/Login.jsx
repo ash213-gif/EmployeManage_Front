@@ -1,5 +1,9 @@
+import axios from 'axios'
 import React from 'react'
 import { useState } from 'react'
+import { GlobarRenderUrl } from '../../GlobalUrl'
+import { Axios } from 'axios'
+
 
 export default function Login() {
 
@@ -7,10 +11,28 @@ export default function Login() {
         email: "",  
     password:""})
 
+    const [ error ,setError]=useState(null)
+    const [success, setSuccess]=useState(null)
+
     const form=[
         { label: "Email", type: "email", name: "email", placeholder: "Enter your email" },
         { label: "Password", type: "password", name: "password", placeholder: "Enter your password" }
     ]
+
+const handleSubmit=async(e)=>{
+    e.preventDefault()
+    try{
+            const response = await axios.post(`${GlobarRenderUrl}/login` ,data )
+            console.log(response );
+            setdata(response.data.data)
+sessionStorage.setItem('LoginId' , response.data.data._id )
+            
+
+    } catch(error){
+        setError(error.response.msg)
+        console.log(error);
+    }
+}
 
   return (
     <>
