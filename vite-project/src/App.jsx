@@ -13,8 +13,7 @@ export default function App() {
         { /* Admin Dashboard Route */}
 
        <Route exact path="/" element={<AdminDash />} >
-         <Route index path='/tasks' element={<Addtask />} />
-        
+         <Route path='/tasks' element={<Addtask />} />
          <Route path="/logout" element={<Logout />} />
          <Route path="/settings" element={<Setting />} />
          <Route path="/employees" element={<Employees />} />
