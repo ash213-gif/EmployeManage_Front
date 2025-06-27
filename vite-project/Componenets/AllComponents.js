@@ -9,3 +9,4 @@ export { default as Logout } from './Admin/pages/Logout';
 export { default as Setting } from './Admin/pages/Setting';
 export { default as Employees } from './Admin/pages/Employees';
 export { default as Alltask } from './Admin/pages/Alltask';
+// export {default as GlobarRenderUrl} from './GlobarRenderUrl';
