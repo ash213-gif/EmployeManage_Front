@@ -25,7 +25,9 @@ export default function Addtask() {
     setSuccess(null);
     try {
       const response = await axios.post(`${GlobarRenderUrl}/createTask`, task);
+      console.log(response);
       if (response.data.status === true) {
+
         setSuccess(response.data.msg);
         setTask({ title: '', description: '' });
       } else {
@@ -33,10 +35,10 @@ export default function Addtask() {
       }
       // Only store UserId if it exists in response
       if (response.data.data && response.data.data._id) {
-       const StoreID=  await  sessionStorage.setItem('UserId', response.data.data._id);
-       console.log(StoreID);
+        sessionStorage.setItem('UserId', response.data.data._id);
+        console.log("UserId stored in sessionStorage:", response.data.data._id);
       }
-      
+
     } catch (error) {
       setError(error.response?.data?.msg || error.message || "Something went wrong");
     }

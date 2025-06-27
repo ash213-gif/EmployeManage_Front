@@ -10,7 +10,6 @@ const ProvideMain = ({ children }) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-
         const response = await axios.get(`${GlobarRenderUrl}/tasks`);
         setdata(response.data);
       } catch (error) {

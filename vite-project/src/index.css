@@ -58,13 +58,14 @@ body{
 
 
 .AdminContent {
+
   height: 100vh;
   width: 1000px;
   position: fixed;
   margin-left: 250px; /* Create space for the sidebar */
   padding: 10px;
   height: 100vh;
-  overflow: hidden;
+  overflow-x: scroll;
   background-color: #FEC0CE;
   border-radius: 20px;
 }
