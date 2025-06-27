@@ -14,7 +14,7 @@ export default function App() {
 
        <Route exact path="/" element={<AdminDash />} >
          <Route index path='/addtask' element={<Addtask />} />
-         <Route path='/alltask' element={<Alltask />} />
+        
          <Route path="/logout" element={<Logout />} />
          <Route path="/settings" element={<Setting />} />
          <Route path="/employees" element={<Employees />} />
