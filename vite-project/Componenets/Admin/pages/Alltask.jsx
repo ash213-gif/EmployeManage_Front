@@ -4,7 +4,7 @@ import { FaEdit, FaTrashAlt, FaSync } from 'react-icons/fa';
 import axios from 'axios'
 import { GlobarRenderUrl } from '../../../GlobalUrl';
 // Dummy handlers to avoid reference errors
-const HandleEdit = () => { };
+
 
 
 
@@ -15,7 +15,11 @@ export default function Alltask() {
   const [success, setsucess] = useState(null)
   const [show, setshow] = useState(false)
 
-// const getId = sessionStorage.getItem('UserId')
+const getId = sessionStorage.getItem('UserId')
+console.log(getId);
+
+
+
 //   const HandleDelete = async () => {
 //     try {
 
