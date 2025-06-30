@@ -3,9 +3,7 @@ import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { GlobarRenderUrl } from '../../GlobalUrl'
 
-
 export default function Login() {
-
   const [data, setdata] = useState({
     email: "",
     password: ""
@@ -28,9 +26,9 @@ export default function Login() {
       const response = await axios.post(`${GlobarRenderUrl}/login`, data)
       setSuccess(response.data.msg || "Login successful!")
       setError(null)
-      sessionStorage.setItem('LoginId', response.data.data?._id)
-      // navigate to dashboard or user page if needed
-      // navigate('/User')
+      // Use correct key: backend sends user as 'user', not 'userData'
+      sessionStorage.setItem('LoginId', response.data.user?._id)
+      navigate('/User')
     } catch (error) {
       setError(
         error.response?.data?.msg ||
