@@ -13,6 +13,7 @@ const SignUpForm = () => {
   const [success, setSuccess] = useState(null);
 
   const navigate = useNavigate();
+  
   const formFields = [
     { label: 'Name', type: 'text', name: 'name', placeholder: 'Enter your name' },
     { label: 'Email Address', type: 'email', name: 'email', placeholder: 'Enter your email' },
@@ -25,15 +26,14 @@ const SignUpForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError(null);
-    setSuccess(null);
+   
     try {
       const response = await axios.post(`${GlobarRenderUrl}/signup`, formData);
       if (response.data.status === true) {
-        sessionStorage.setItem('SignupId', response.data.user._id);
+       await  sessionStorage.setItem('SignupId', response.data.user._id);
         setSuccess(response.data.msg);
         setError(null);
-        navigate(`/otpverfication/${response.data.user._id}`);
+       await navigate(`/otpverfication/${response.data.user._id}`);
       } else {
         setError(response.data.msg || 'Signup failed');
         setSuccess(null);
@@ -64,8 +64,8 @@ const SignUpForm = () => {
               value={formData[field.name]}
               onChange={handleChange}
               placeholder={field.placeholder}
-              autoComplete="off"
-              required
+              
+           
             />
           </div>
         ))}

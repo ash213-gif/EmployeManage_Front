@@ -6,7 +6,13 @@ import DetailedInformation from './Detaled';
 import Inbox from './Inbox';
 
 
+
 export default function Profile() {
+
+
+  const GetId= sessionStorage.getItem('SignupId')
+  console.log(GetId);
+
   return (
     <>
     <div className='fullprofile' >
