@@ -7,14 +7,14 @@ export default function Otpverfication() {
 
   const [otp, setotp] = useState('')
   const navigate = useNavigate();
-  const Sigupid = sessionStorage.getItem('SignupId');
+  const Sigupid = sessionStorage.getItem('Id');
   const [success, setsuccess] = useState(null)
   const [error, seterror] = useState(null)
 
  const handleSubmit = async (e) => {
   e.preventDefault();
   try {
-    const response = await axios.post(`${GlobarRenderUrl}/verifyotp/${Sigupid}`, { otp: otp })
+    const response = await axios.post(`${GlobarRenderUrl}/verifyotp/${Id}`, { otp: otp })
     if (await response.data.status === true) {
       setsuccess(response.data.msg);
       seterror(null);
