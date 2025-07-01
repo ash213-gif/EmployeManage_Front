@@ -18,7 +18,7 @@ export default function App() {
         <Route exact path='/User' element={<UserHome />}>
           <Route path='/User/profile' element={<Profile />} />
           <Route path='/User/settings' element={<Settings/>} />
-          <Route path='/User/logout' element={<UserLogout />} />
+          <Route path='/User/userlogout' element={<UserLogout />} />
           <Route path='/User/help' element={<Help />} />
         </Route>
 

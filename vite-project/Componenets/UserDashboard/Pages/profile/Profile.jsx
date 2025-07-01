@@ -11,7 +11,7 @@ export default function Profile() {
   const [user, setUser] = useState(null);
 useEffect(() => {
   const fetchUser = async () => {
-    const id = sessionStorage.getItem('SignupId');
+    const id = sessionStorage.getItem('Id');
     console.log(id);
     try {
       const response = await axios.get(`${GlobarRenderUrl}/getuser/${id}`);

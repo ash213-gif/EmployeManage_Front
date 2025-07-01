@@ -14,7 +14,7 @@ export default function Otpverfication() {
  const handleSubmit = async (e) => {
   e.preventDefault();
   try {
-    const response = await axios.post(`${GlobarRenderUrl}/verifyotp/${Id}`, { otp: otp })
+    const response = await axios.post(`${GlobarRenderUrl}/verifyotp/${Sigupid}`, { otp: otp })
     if (await response.data.status === true) {
       setsuccess(response.data.msg);
       seterror(null);

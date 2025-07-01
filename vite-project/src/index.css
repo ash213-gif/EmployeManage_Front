@@ -1267,3 +1267,9 @@ justify-content: center;
   background: #d0e2ff;
 }
 
+.logoutContainer{
+  display: flex;
+  justify-content: center;
+  height: 100vh;
+  
+}

@@ -30,7 +30,7 @@ export default function UseSideBr() {
           </Link>
         </li>
         <li>
-          <Link to="/logout" className="sidebar-link">
+          <Link to="/User/userlogout" className="sidebar-link">
             <FaSignOutAlt className="sidebar-icon" /> Logout
           </Link>
         </li>
