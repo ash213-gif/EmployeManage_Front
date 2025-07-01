@@ -1169,3 +1169,101 @@ margin-top: 20px;
   background: #f7faff;
  
 }
+
+/* settinf g  design  */
+.settingbody{
+  display: flex;
+  border-radius: 30px;
+  background-color: #7490ad;
+   height: 100vh;
+ width:1040px;
+justify-content: center;
+
+  font-family: 'Inter', 'Noto Sans', sans-serif;
+}
+
+.settings-root {
+  height: 90vh;
+ 
+  width: 450px;
+  font-family: 'Inter', 'Noto Sans', sans-serif;
+}
+.settings-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px 40px;
+  background: #fff;
+  border-bottom: 1px solid #e7edf4;
+}
+.settings-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.settings-logo h2 {
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: #0d141c;
+  margin: 0;
+}
+.settings-avatar img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.settings-main {
+  max-width: 500px;
+  margin: 40px auto;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(44, 62, 80, 0.06);
+  padding: 32px 24px;
+}
+.settings-main h1 {
+  font-size: 2rem;
+  margin-bottom: 24px;
+  color: #0d141c;
+}
+.settings-section {
+  margin-bottom: 32px;
+}
+.settings-section h3 {
+  font-size: 1.1rem;
+  color: #0d141c;
+  margin-bottom: 12px;
+}
+.settings-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid #e7edf4;
+}
+.settings-label {
+  color: #0d141c;
+  font-weight: 500;
+}
+.settings-value {
+  color: #49739c;
+}
+.settings-logout {
+  display: flex;
+  justify-content: flex-start;
+  margin-top: 24px;
+}
+.settings-logout button {
+  background: #e7edf4;
+  color: #0d141c;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 32px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.settings-logout button:hover {
+  background: #d0e2ff;
+}
+

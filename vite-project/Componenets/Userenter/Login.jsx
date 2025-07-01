@@ -27,7 +27,7 @@ export default function Login() {
       setSuccess(response.data.msg || "Login successful!")
       setError(null)
       // Use correct key: backend sends user as 'user', not 'userData'
-      sessionStorage.setItem('LoginId', response.data.user?._id)
+      sessionStorage.setItem('Id', response.data.user?._id)
       navigate('/User')
     } catch (error) {
       setError(

@@ -1,26 +1,26 @@
-import React from 'react';
+import React, { useEffect, useState, useContext } from 'react';
+import { Context } from '../../../Context/Context';
 
-const ProjectCard = ({ title, date, progress, daysLeft }) => {
+const ProjectCard = () => {
+  const { data } = useContext(Context);
+  const [datas, setdata] = useState([]);
+
+  useEffect(() => {
+    setdata(Array.isArray(data) ? data : []);
+  }, [data]);
+
   return (
-    <div className='groupofcards' >
-      <div className="project-card">
-        <h3>dfghjkl;'</h3>
-        <p>fghjkl;'</p>
-        <progress value={progress} max="100"></progress>
-        <p>{daysLeft} Days Left</p>
-      </div>
-      <div className="project-card">
-        <h3>dfghjkl;'</h3>
-        <p>fghjkl;'</p>
-        <progress value={progress} max="100"></progress>
-        <p>{daysLeft} Days Left</p>
-      </div>
-      <div className="project-card">
-        <h3>dfghjkl;'</h3>
-        <p>fghjkl;'</p>
-        <progress value={progress} max="100"></progress>
-        <p>{daysLeft} Days Left</p>
-      </div>
+    <div className='groupofcards'>
+      {datas.length === 0 && <p>No projects found.</p>}
+      {datas.map((tasks, i) => (
+        <div
+          key={i}
+          className="project-card">
+          <h3>{tasks.title}</h3>
+          <p>{tasks.description}</p>
+          <p>{tasks.daysLeft ? `${tasks.daysLeft} Days Left` : ''}</p>
+        </div>
+      ))}
     </div>
   );
 };

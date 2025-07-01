@@ -30,7 +30,7 @@ const SignUpForm = () => {
     try {
       const response = await axios.post(`${GlobarRenderUrl}/signup`, formData);
       if (response.data.status === true) {
-       await  sessionStorage.setItem('SignupId', response.data.user._id);
+       await  sessionStorage.setItem('Id', response.data.user._id);
         setSuccess(response.data.msg);
         setError(null);
        await navigate(`/otpverfication/${response.data.user._id}`);
