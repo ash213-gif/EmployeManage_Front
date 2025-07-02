@@ -6,30 +6,57 @@ import DetailedInformation from './Detaled';
 import Inbox from './Inbox';
 import axios from 'axios';
 import { GlobarRenderUrl } from '../../../../GlobalUrl'
+import { useNavigate } from 'react-router-dom';
 
 export default function Profile() {
   const [user, setUser] = useState(null);
-useEffect(() => {
-  const fetchUser = async () => {
-    const id = sessionStorage.getItem('Id');
-    console.log(id);
+  const [id, setId] = useState(null);
+  const [err, seterr] = useState(null);
+  const [succes, setsucess] = useState(null);
+  const navigate = useNavigate();
+
+  // Fetch user on mount
+  useEffect(() => {
+    const userId = sessionStorage.getItem('Id');
+    setId(userId);
+    const fetchUser = async () => {
+      try {
+        const response = await axios.get(`${GlobarRenderUrl}/getuser/${userId}`);
+        setUser(response.data.user);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    if (userId) fetchUser();
+  }, []);
+
+  // Change role and refresh user data
+  const handlerole = async () => {
     try {
-      const response = await axios.get(`${GlobarRenderUrl}/getuser/${id}`);
-      setUser(response.data.user); // Set user state if your backend returns { user: ... }
-      console.log(response.data.user);
-    } catch (error) {
-      console.log(error);
+      const response = await axios.put(`${GlobarRenderUrl}/changerole/${id}`, { role: 'admin' });
+      if (response.data.status === true) {
+        setsucess(response.data.msg);
+        seterr(null);
+        // Fetch updated user data after role change
+        const updatedUser = await axios.get(`${GlobarRenderUrl}/getuser/${id}`);
+        setUser(updatedUser.data.user);
+      } else {
+        seterr(response.data.msg);
+        setsucess(null);
+      }
+    } catch (e) {
+      seterr(e.response?.data?.msg || e.message);
+      setsucess(null);
+      console.log(e);
     }
   };
-  fetchUser();
-}, []);
 
   return (
     <div className='fullprofile'>
       <div className="profile-container">
         <div className="profile-card">
           <div className="profile-avatar">
-            {/* {user && user.ProfileImg ? (
+            {user && user.ProfileImg ? (
               <img
                 src={user.ProfileImg}
                 alt={user.name}
@@ -37,8 +64,7 @@ useEffect(() => {
               />
             ) : (
               <FaUserCircle size={90} color="#2d7ff9" />
-            )} */}
-            {user && user.name}
+            )}
           </div>
           <h2 className="profile-name">{user ? user.name : 'Loading...'}</h2>
           <div className="profile-role">
@@ -52,10 +78,13 @@ useEffect(() => {
             </span>
             <span>
               <FaPhone className="profile-contact-icon" />
-              {/* You can add phone field in user schema and show here */}
               {user && user.phone ? user.phone : '(not set)'}
             </span>
-            <button>Become an Admin</button>
+            {user && user.role !== 'admin' && (
+              <button onClick={handlerole}>Become an Admin</button>
+            )}
+            {succes && <div className="success-msg">{succes}</div>}
+            {err && <div className="error-msg">{err}</div>}
           </div>
         </div>
         <ProjectCard />

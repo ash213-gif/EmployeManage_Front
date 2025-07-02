@@ -2,7 +2,8 @@ import React from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import {
   Alltask, SignUpForm, Login, AdminDash, Otpverfication, Addtask, Logout, Employees, Setting,
-  UserHome ,UserLogout , Profile  ,Help ,Settings } from '../Componenets/AllComponents'
+  UserHome ,UserLogout , Profile  ,Help ,Settings, 
+  Dashboad} from '../Componenets/AllComponents'
 // import Counter  from '../Componenets/Redux/Counter'
 export default function App() {
   return (
@@ -14,12 +15,14 @@ export default function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/otpverfication/:id" element={<Otpverfication />} />
 
+
         {/* User DashBoard  */}
         <Route exact path='/User' element={<UserHome />}>
           <Route path='/User/profile' element={<Profile />} />
           <Route path='/User/settings' element={<Settings/>} />
           <Route path='/User/userlogout' element={<UserLogout />} />
           <Route path='/User/help' element={<Help />} />
+          <Route path='/User/dashboard' element={<Dashboad />} />
         </Route>
 
         { /* Admin Dashboard Route */}

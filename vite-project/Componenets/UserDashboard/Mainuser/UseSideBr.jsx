@@ -10,9 +10,10 @@ export default function UseSideBr() {
       </div>
       <ul className="sidebar-list">
         <li>
-          <Link to="/User" className="sidebar-link">
+          <Link to="/User/dashboard" className="sidebar-link">
             <FaTachometerAlt className="sidebar-icon" /> Dashboard
           </Link>
+           
         </li>
         <li>
           <Link to="/User/profile" className="sidebar-link">
