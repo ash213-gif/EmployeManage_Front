@@ -18,26 +18,25 @@ export default function Login() {
     { label: "Password", type: "password", name: "password", placeholder: "Enter your password" }
   ]
 
-  const handleSubmit = async (e) => {
-    e.preventDefault()
-    setError(null)
-    setSuccess(null)
-    try {
-      const response = await axios.post(`${GlobarRenderUrl}/login`, data)
-      setSuccess(response.data.msg || "Login successful!")
-      setError(null)
-      // Use correct key: backend sends user as 'user', not 'userData'
-      sessionStorage.setItem('Id', response.data.user?._id)
-      navigate('/User')
-    } catch (error) {
-      setError(
-        error.response?.data?.msg ||
-        error.response?.data?.message ||
-        "Login failed"
-      )
-      setSuccess(null)
-    }
+ const handleSubmit = async (e) => {
+  e.preventDefault();
+  setError(null);
+  setSuccess(null);
+  try {
+    const response = await axios.post(`${GlobarRenderUrl}/login`, data);
+    setSuccess(response.data.msg);
+    setError(null);
+    sessionStorage.setItem('Id', response.data.user._id);
+    navigate('/User');
+  } catch (error) {
+    setError(
+      error.response?.data?.msg ||
+      error.response?.data?.message ||
+      "Login failed"
+    );
+    setSuccess(null);
   }
+}
 
   return (
     <div className="login-container">

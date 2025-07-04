@@ -13,6 +13,7 @@ export default function Profile() {
   const [id, setId] = useState(null);
   const [err, seterr] = useState(null);
   const [succes, setsucess] = useState(null);
+  const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
   // Fetch user on mount
@@ -24,10 +25,13 @@ export default function Profile() {
         const response = await axios.get(`${GlobarRenderUrl}/getuser/${userId}`);
         setUser(response.data.user);
       } catch (error) {
-        console.log(error);
+        seterr("Failed to fetch user data.");
+      } finally {
+        setLoading(false);
       }
     };
     if (userId) fetchUser();
+    else setLoading(false);
   }, []);
 
   // Change role and refresh user data
@@ -47,9 +51,12 @@ export default function Profile() {
     } catch (e) {
       seterr(e.response?.data?.msg || e.message);
       setsucess(null);
-      console.log(e);
     }
   };
+
+  if (loading) {
+    return <div className="fullprofile"><div>Loading...</div></div>;
+  }
 
   return (
     <div className='fullprofile'>
