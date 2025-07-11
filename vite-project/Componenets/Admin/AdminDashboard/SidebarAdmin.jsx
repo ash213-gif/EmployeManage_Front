@@ -7,11 +7,11 @@ export default function SidebarAdmin() {
     <div className="Adminside">
       <h2>Admin Panel</h2>
       <ul>
-        <li><Link to="/tasks"><FaTasks /> All Tasks</Link></li>
-        <li><Link to="/addtask"><FaPlus /> Add Task</Link></li>
-        <li><Link to="/employees"><FaUsers /> All Employees</Link></li>
-        <li><Link to="/settings"><FaCog /> Settings</Link></li>
-        <li><Link to="/logout"><FaSignOutAlt /> Logout</Link></li>
+        <li><Link to="/admin/tasks"><FaTasks /> All Tasks</Link></li>
+        <li><Link to="/admin/addtask"><FaPlus /> Add Task</Link></li>
+        <li><Link to="/admin/employees"><FaUsers /> All Employees</Link></li>
+        <li><Link to="/admin/settings"><FaCog /> Settings</Link></li>
+        <li><Link to="/admin/logout"><FaSignOutAlt /> Logout</Link></li>
       </ul>
     </div>
   );
