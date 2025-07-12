@@ -1,18 +1,20 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import './index.css'
-import App from './App.jsx'
-// import { store } from '../Componenets/Redux/Store.js'
-// import { Provider} from 'react-redux'
-import {ProvideMain} from '../Componenets/Context/Context.jsx'
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
+import "./index.css";
+import App from "./App.jsx";
 
-createRoot(document.getElementById('root')).render(
+import { ProvideMain } from "../Componenets/Context/Gettask.jsx";
+import { Getusefunction } from "../Componenets/Context/Getusefunction.jsx";
+import { GetMonthlyData } from "../Componenets/Context/GetMonthlyById.jsx";
+
+createRoot(document.getElementById("root")).render(
   <StrictMode>
-    {/* <Provider store={store}> */}
-      <ProvideMain>
-        <App />
-      </ProvideMain>
-    {/* </Provider> */}
-  </StrictMode>,
-)
-
+    <ProvideMain>
+      <Getusefunction>
+        <GetMonthlyData>
+          <App />
+        </GetMonthlyData>
+      </Getusefunction>
+    </ProvideMain>
+  </StrictMode>
+);

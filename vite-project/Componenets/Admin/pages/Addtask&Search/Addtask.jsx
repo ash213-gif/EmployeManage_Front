@@ -1,17 +1,22 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import { GlobarRenderUrl } from "../../../../GlobalUrl";
 import { toast, ToastContainer } from "react-toastify";
 import Seacrch from "./Seacrch";
+import { Getusers } from "../../../Context/Getusefunction";
 
 export default function Addtask() {
   const [task, setTask] = useState({
     title: "",
     description: "",
+    assignedTo: "",
+    deadline: "",
   });
 
-  const [error, setError] = useState(null);
-  const [success, setSuccess] = useState(null);
+  const { getusers } = useContext(Getusers);
+
+  const [employees, setEmployees] = useState([]);
+ 
 
   const fields = [
     { type: "text", placeholder: "Enter your title", name: "title" },
@@ -22,36 +27,36 @@ export default function Addtask() {
     },
   ];
 
+useEffect(() => {
+    if (getusers && Array.isArray(getusers)) {
+      const filteredUsers = getusers.filter(user => user.role === 'user');
+      setEmployees(filteredUsers); 
+    }
+  }, [getusers]);
   const handleChange = (e) => {
     setTask({ ...task, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError(null);
-    setSuccess(null);
+
     try {
-      const response = await axios.post(`${GlobarRenderUrl}/createTask`, task);
+      const response = await axios.post( 'http://localhost:4040/createTask' ||`${GlobarRenderUrl}/createTask`  , task);
       console.log(response);
-      if (response.data.status === true) {
-        setSuccess(response.data.msg);
+      if (response.data.status) {
         toast.success(response.data.msg);
-        toast.error(null);
-        setTask({ title: "", description: "" });
+        setTask({ title: "", description: "", assignedTo: "", deadline: "" });
       } else {
-        setError(response.data.msg || "Failed to add task");
+        toast.error(response.data.msg || "Failed to add task");
       }
-      // Only store UserId if it exists in response
+
       if (response.data.data && response.data.data._id) {
         sessionStorage.setItem("UserId", response.data.data._id);
         console.log("UserId stored in sessionStorage:", response.data.data._id);
       }
     } catch (error) {
-      setError(
-        error.response?.data?.msg || error.message || "Something went wrong"
-      );
-      toast.error(response.data.msg);
-      toast.success(null);
+    
+      toast.error(error.response?.data?.msg || "Error occurred");
     }
   };
 
@@ -76,11 +81,42 @@ export default function Addtask() {
                   />
                 </div>
               ))}
+              <div className="form-group">
+                <label htmlFor="assignedTo">Assign To:</label>
+                <select
+                  name="assignedTo"
+                  value={task.assignedTo}
+                  onChange={handleChange}
+                  className="form-control"
+                  required
+                >
+                  <option value="">Select Employee</option>
+                  {employees.length > 0 ? (
+                    employees.map((employee) => (
+                      <option key={employee._id} value={employee._id}>
+                        {employee.name}
+                      </option>
+                    ))
+                  ) : (
+                    <option disabled>No employees available</option>
+                  )}
+                </select>
+              </div>
+              <div className="form-group">
+                <label htmlFor="deadline">Deadline:</label>
+                <input
+                  type="date"
+                  name="deadline"
+                  value={task.deadline}
+                  onChange={handleChange}
+                  className="form-control"
+                  required
+                />
+              </div>
               <button type="submit" className="btn btn-primary">
                 Submit
               </button>
-              {error && <div className="alert alert-danger">{error}</div>}
-              {success && <div className="alert alert-success">{success}</div>}
+            
             </form>
           </div>
         </div>

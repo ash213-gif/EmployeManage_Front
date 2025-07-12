@@ -27,7 +27,13 @@ export default function Login() {
     setSuccess(response.data.msg);
     setError(null);
     sessionStorage.setItem('Id', response.data.user._id);
+    if( response.data.user.role === 'admin' ){
+      navigate('/admin')
+    }
+    else{
     navigate('/User');
+
+    }
   } catch (error) {
     setError(
       error.response?.data?.msg ||

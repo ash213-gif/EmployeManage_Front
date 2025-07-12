@@ -1,12 +1,12 @@
 import React, { useContext, useState, useEffect } from 'react';
-import { Context } from '../../Context/Context';
+import { Context } from '../../Context/Gettask';
 import { FaEdit, FaTrashAlt, FaSync } from 'react-icons/fa';
 import axios from 'axios';
 import { GlobarRenderUrl } from '../../../GlobalUrl';
 
 export default function Alltask() {
   const { data } = useContext(Context);
-  console.log(data);
+
 
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(null);

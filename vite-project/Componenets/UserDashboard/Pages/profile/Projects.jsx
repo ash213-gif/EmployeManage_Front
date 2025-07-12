@@ -1,8 +1,9 @@
 import React, { useEffect, useState, useContext } from 'react';
-import { Context } from '../../../Context/Context';
+import { Context } from '../../../Context/Gettask' ;
 
 const ProjectCard = () => {
   const { data } = useContext(Context);
+ 
   const [datas, setdata] = useState([]);
 
   useEffect(() => {

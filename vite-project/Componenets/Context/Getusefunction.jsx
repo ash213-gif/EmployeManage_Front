@@ -2,19 +2,19 @@ import { createContext, useEffect, useState } from "react";
 import React from "react";
 import axios from "axios";
 import { GlobarRenderUrl } from "../../GlobalUrl";
-import { ToastContainer, toast } from "react-toastify";
 
 const Getusers=createContext()
 
-export default function Employee() {
+const  Getusefunction =({children})=> {
 
-    const [ getusers,setgetusers]=useState()
+    const [ getusers,setgetusers]=useState([])
 
   useEffect(() => {
     const getusers = async () => {
       try {
         const response = await axios.get(`${GlobarRenderUrl}/getusers`);
-        console.log(response);
+        setgetusers(response.data.getusers)
+        
       } catch (err) {
         console.log(err);
       }
@@ -24,8 +24,11 @@ export default function Employee() {
 
   return (
 
-    <Getusers.Provider value={} >
+    <Getusers.Provider value={{getusers,setgetusers}} >
         {children}
     </Getusers.Provider>
   );
 }
+
+
+export { Getusers ,Getusefunction}
