@@ -3,30 +3,31 @@ import { createContext, useEffect, useState } from "react";
 import { GlobarRenderUrl } from "../../GlobalUrl";
 import React from "react";
 
-const GetMonthlyById = createContext(null); // Corrected the context name
+const GetMonthlyById = createContext(null); 
 
 const GetMonthlyData = ({ children }) => {
   const [monthlyData, setMonthlyData] = useState(null);
-  const userId = sessionStorage.getItem("Id"); // Ensure userId is defined
-  const currentYear = new Date().getFullYear();
-  const currentMonth = new Date().getMonth() + 1;
+  const userId = sessionStorage.getItem("Id"); 
+
+  // Correctly initialize state for current year and month
+  const [currentYear, setCurrentYear] = useState(new Date().getFullYear());
+  const [currentMonth, setCurrentMonth] = useState(new Date().getMonth() + 1);
 
   useEffect(() => {
     const getMonthly = async () => {
       try {
-        const response = await axios.get(  `http://localhost:4040/getMonthlyTaskCount/${userId}/${currentYear}/${currentMonth}` ||`${GlobarRenderUrl}/getMonthlyTaskCount/${userId}/${currentYear}/${currentMonth}` );
-        console.log(response);
+        const response = await axios.get(`${GlobarRenderUrl}/getMonthlyTaskCount/${userId}/${currentYear}/${currentMonth}` );
         setMonthlyData(response.data.taskCount);
       } catch (err) {
         console.log(err);
       }
     };
 
-    getMonthly(); // Call the function to fetch data
-  }, [userId, currentYear, currentMonth]); // Dependencies for useEffect
+    getMonthly(); 
+  }, [userId, currentYear, currentMonth]); 
 
   return (
-    <GetMonthlyById.Provider value={{ monthlyData, setMonthlyData }}>
+    <GetMonthlyById.Provider value={{ monthlyData, setMonthlyData, currentYear, setCurrentYear, currentMonth, setCurrentMonth }}>
       {children}
     </GetMonthlyById.Provider>
   );
