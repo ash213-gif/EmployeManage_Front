@@ -8,13 +8,21 @@ const Dashboard = () => {
   const {
     monthlyData,
     setMonthlyData,
+    dailyData,
+    yearlyData,
     currentYear,
     setCurrentYear,
     currentMonth,
     setCurrentMonth,
+    currentDay,
+     yearlydata,
+      setyaerlydata
   } = useContext(GetMonthlyById);
 
-  const [div, setdiv] = useState(false);
+
+  console.log(monthlyData);
+  console.log(dailyData);
+  console.log(yearlydata);
 
   const currentYearValue = new Date().getFullYear();
   const years = Array.from({ length: 10 }, (_, i) => currentYearValue - i);
@@ -42,17 +50,16 @@ const Dashboard = () => {
   };
 
   const handleFetchData = () => {
-    console.log("Fetching data for:", monthlyData);
+    // Fetch data based on the selected year and month
+    console.log("Fetching data for:", currentYear, currentMonth);
   };
 
   return (
-    <div className=" mx-auto p-6">
-      {/* <h1 className="text-3xl font-bold mb-6">Dashboard</h1> */}
-
+    <div className="mx-auto p-6">
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
         <div
           className="bg-blue-500 text-white p-6 rounded-xl shadow-md flex items-center justify-between hover:scale-105 transition-all cursor-pointer"
-          onClick={() => setdiv(true)}
+          
         >
           <div>
             <h2 className="text-xl font-semibold">Monthly Tasks</h2>
@@ -64,7 +71,7 @@ const Dashboard = () => {
         <div className="bg-red-500 text-white p-6 rounded-xl shadow-md flex items-center justify-between hover:scale-105 transition-all">
           <div>
             <h2 className="text-xl font-semibold">Yearly Tasks</h2>
-            <p className="text-2xl">{monthlyData}</p>
+            <p className="text-2xl">{yearlydata}</p>
           </div>
           <ImStatsBars className="text-4xl" />
         </div>
@@ -72,7 +79,7 @@ const Dashboard = () => {
         <div className="bg-green-500 text-white p-6 rounded-xl shadow-md flex items-center justify-between hover:scale-105 transition-all">
           <div>
             <h2 className="text-xl font-semibold">Daily Tasks</h2>
-            <p className="text-2xl">{monthlyData}</p>
+            <p className="text-2xl">{dailyData}</p>
           </div>
           <FaRegClock className="text-4xl" />
         </div>

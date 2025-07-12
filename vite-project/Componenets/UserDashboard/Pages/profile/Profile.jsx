@@ -5,7 +5,7 @@ import ProjectCard from './Projects';
 import DetailedInformation from './Detaled';
 import Inbox from './Inbox';
 import axios from 'axios';
-import { GlobarRenderUrl } from '../../../../GlobalUrl'
+import { GlobarRenderUrl } from '../../../../GlobalUrl';
 import { useNavigate } from 'react-router-dom';
 
 export default function Profile() {
@@ -16,7 +16,6 @@ export default function Profile() {
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
-  // Fetch user on mount
   useEffect(() => {
     const userId = sessionStorage.getItem('Id');
     setId(userId);
@@ -34,14 +33,12 @@ export default function Profile() {
     else setLoading(false);
   }, []);
 
-  // Change role and refresh user data
   const handlerole = async () => {
     try {
       const response = await axios.put(`${GlobarRenderUrl}/changerole/${id}`, { role: 'admin' });
       if (response.data.status === true) {
         setsucess(response.data.msg);
         seterr(null);
-        // Fetch updated user data after role change
         const updatedUser = await axios.get(`${GlobarRenderUrl}/getuser/${id}`);
         setUser(updatedUser.data.user);
       } else {
@@ -55,56 +52,64 @@ export default function Profile() {
   };
 
   if (loading) {
-    return <div className="fullprofile"><div>Loading...</div></div>;
+    return (
+      <div className="h-screen flex justify-center items-center">
+        <div>Loading...</div>
+      </div>
+    );
   }
 
   return (
-    <div className='fullprofile'>
-      <div className="profile-container">
-        <div className="profile-card">
-          <div className="profile-avatar">
+    <div className="container mx-auto p-4 md:p-6 lg:p-8">
+      <div className="flex flex-col lg:flex-row gap-4">
+        <div className="lg:w-1/3 xl:w-1/4 p-4 bg-white rounded shadow-md">
+          <div className="flex flex-col items-center">
             {user && user.ProfileImg ? (
               <img
                 src={user.ProfileImg}
                 alt={user.name}
-                style={{ width: 90, height: 90, borderRadius: '50%', objectFit: 'cover', border: '2px solid #2d7ff9' }}
+                className="w-24 h-24 rounded-full object-cover border-2 border-blue-500"
               />
             ) : (
               <FaUserCircle size={90} color="#2d7ff9" />
             )}
-          </div>
-          <h2 className="profile-name">{user ? user.name : 'Loading...'}</h2>
-          <div className="profile-role">
-            <FaBriefcase className="profile-role-icon" />
-            <span>{user && user.role ? user.role.charAt(0).toUpperCase() + user.role.slice(1) : 'User'}</span>
-          </div>
-          <div className="contact-info">
-            <span>
-              <FaEnvelope className="profile-contact-icon" />
-              {user ? user.email : ''}
-            </span>
-            <span>
-              <FaPhone className="profile-contact-icon" />
-              {user && user.phone ? user.phone : '(not set)'}
-            </span>
+            <h2 className="text-xl font-bold mt-4">{user ? user.name : 'Loading...'}</h2>
+            <div className="flex items-center gap-2">
+              <FaBriefcase />
+              <span>{user && user.role ? user.role.charAt(0).toUpperCase() + user.role.slice(1) : 'User'}</span>
+            </div>
+            <div className="flex flex-col gap-2 mt-4">
+              <span className="flex items-center gap-2">
+                <FaEnvelope />
+                {user ? user.email : ''}
+              </span>
+              <span className="flex items-center gap-2">
+                <FaPhone />
+                {user && user.phone ? user.phone : '(not set)'}
+              </span>
+            </div>
             {user && user.role !== 'admin' && (
-              <button onClick={handlerole}>Become an Admin</button>
+              <button
+                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                onClick={handlerole}
+              >
+                Become an Admin
+              </button>
             )}
-            {succes && <div className="success-msg">{succes}</div>}
-            {err && <div className="error-msg">{err}</div>}
+            {succes && <div className="text-green-500">{succes}</div>}
+            {err && <div className="text-red-500">{err}</div>}
           </div>
         </div>
-        <ProjectCard />
-      </div>
-      <div className="anotherContainer">
-        <div className="detailed-info-section">
-          <DetailedInformation />
-        </div>
-        {/* <div className="calendar-section">
-          <Calendar />
-        </div> */}
-        <div className="inbox-section">
-          <Inbox />
+        <div className="lg:w-2/3 xl:w-3/4 p-4">
+          <ProjectCard />
+          <div className="flex flex-col lg:flex-row gap-4 mt-4">
+            <div className="lg:w-1/2">
+              <DetailedInformation />
+            </div>
+            <div className="lg:w-1/2">
+              <Inbox />
+            </div>
+          </div>
         </div>
       </div>
     </div>
