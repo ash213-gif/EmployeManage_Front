@@ -1,39 +1,41 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { FaTachometerAlt, FaUser, FaCog, FaQuestionCircle, FaSignOutAlt } from 'react-icons/fa';
 
 export default function UserSideBar() {
+  const location = useLocation();
+
+  const isActive = (path) => location.pathname === path;
+
+  const menuItems = [
+    { path: '/User/dashboard', icon: FaTachometerAlt, label: 'Dashboard' },
+    { path: '/User/profile', icon: FaUser, label: 'Profile' },
+    { path: '/User/settings', icon: FaCog, label: 'Settings' },
+    { path: '/User/help', icon: FaQuestionCircle, label: 'Help' },
+    { path: '/User/userlogout', icon: FaSignOutAlt, label: 'Logout' },
+  ];
+
   return (
-    <div className="w-54 bg-gray-800 text-white h-screen p-4 fixed top-0 left-0">
-      <div className="mb-8">
-        <h2 className="text-2xl font-bold">User Panel</h2>
+    <div className="w-54  rounded-2xl bg-gray-100 text-gray-900 h-screen p-6 fixed top-0 left-0 shadow-lg">
+      <div className="mb-10">
+        <h2 className="text-3xl font-bold text-center bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-600">User Panel</h2>
       </div>
       <ul>
-        <li className="mb-2">
-          <Link to="/User/dashboard" className="flex items-center py-2 px-4 hover:bg-gray-700 rounded">
-            <FaTachometerAlt className="mr-4" /> Dashboard
-          </Link>
-        </li>
-        <li className="mb-2">
-          <Link to="/User/profile" className="flex items-center py-2 px-4 hover:bg-gray-700 rounded">
-            <FaUser className="mr-4" /> Profile
-          </Link>
-        </li>
-        <li className="mb-2">
-          <Link to="/User/settings" className="flex items-center py-2 px-4 hover:bg-gray-700 rounded">
-            <FaCog className="mr-4" /> Settings
-          </Link>
-        </li>
-        <li className="mb-2">
-          <Link to="/User/help" className="flex items-center py-2 px-4 hover:bg-gray-700 rounded">
-            <FaQuestionCircle className="mr-4" /> Help
-          </Link>
-        </li>
-        <li>
-          <Link to="/User/userlogout" className="flex items-center py-2 px-4 hover:bg-gray-700 rounded">
-            <FaSignOutAlt className="mr-4" /> Logout
-          </Link>
-        </li>
+        {menuItems.map((item) => (
+          <li key={item.path} className="mb-4">
+            <Link
+              to={item.path}
+              className={`flex items-center py-3 px-4 rounded-lg transition-all duration-300 ease-in-out ${
+                isActive(item.path)
+                  ? 'bg-gradient-to-r from-purple-500 to-pink-500 text-white shadow-lg'
+                  : 'hover:bg-gray-700 hover:shadow-md'
+              }`}
+            >
+              <item.icon className={`mr-4 text-xl ${isActive(item.path) ? 'text-white' : 'text-purple-300'}`} />
+              <span className="font-medium">{item.label}</span>
+            </Link>
+          </li>
+        ))}
       </ul>
     </div>
   );

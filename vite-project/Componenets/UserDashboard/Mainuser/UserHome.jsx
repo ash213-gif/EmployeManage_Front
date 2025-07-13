@@ -6,7 +6,7 @@ import { Outlet } from 'react-router-dom';
 export default function UserHome() {
   return (
     <div className="flex h-screen">
-      <div className="w-1/4 md:w-1/5 lg:w-2/6 xl:w-1/6 bg-gray-800 text-white p-4 fixed top-0 left-0 h-screen">
+      <div className="w-1/4 md:w-1/5 lg:w-2/6 xl:w-1/6  p-4 fixed top-0 left-0 h-screen">
         <UseSideBr />
       </div>
 

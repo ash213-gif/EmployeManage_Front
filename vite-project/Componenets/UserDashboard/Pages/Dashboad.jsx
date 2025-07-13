@@ -3,6 +3,7 @@ import { ImStatsBars } from "react-icons/im";
 import { FaTasks, FaCalendarAlt, FaRegClock } from "react-icons/fa";
 import { GetMonthlyById } from "../../Context/GetMonthlyById";
 import { ToastContainer } from "react-toastify";
+import { HiMenu } from "react-icons/hi";
 
 const Dashboard = () => {
   const {
@@ -15,14 +16,11 @@ const Dashboard = () => {
     currentMonth,
     setCurrentMonth,
     currentDay,
-     yearlydata,
-      setyaerlydata
+    yearlydata,
+    setyaerlydata,
   } = useContext(GetMonthlyById);
 
-
-  console.log(monthlyData);
-  console.log(dailyData);
-  console.log(yearlydata);
+  const [div, setdiv] = useState(false);
 
   const currentYearValue = new Date().getFullYear();
   const years = Array.from({ length: 10 }, (_, i) => currentYearValue - i);
@@ -56,11 +54,8 @@ const Dashboard = () => {
 
   return (
     <div className="mx-auto p-6">
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
-        <div
-          className="bg-blue-500 text-white p-6 rounded-xl shadow-md flex items-center justify-between hover:scale-105 transition-all cursor-pointer"
-          
-        >
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-10">
+        <div className="bg-blue-500 text-white p-6 rounded-xl shadow-md flex items-center justify-between hover:scale-105 transition-all cursor-pointer">
           <div>
             <h2 className="text-xl font-semibold">Monthly Tasks</h2>
             <p className="text-2xl">{monthlyData}</p>
@@ -83,12 +78,26 @@ const Dashboard = () => {
           </div>
           <FaRegClock className="text-4xl" />
         </div>
+
+
+        <div class="flex items-center p-4  bg-cyan-500 rounded-2xl shadow-md">
+          <span class="text-lg font-semibold text-gray-800">
+            Get data by their own
+          </span>
+          <HiMenu 
+          onClick={()=>setdiv(!div)}
+          className="ml-4 text-4xl text-white  hover:text-gray-800 cursor-pointer" />
+        </div>
       </div>
 
-      <div className="bg-white p-6 rounded-xl shadow-md mb-8">
-        <div className="flex flex-col md:flex-row gap-4">
+       {  div && 
+       
+       <div className="bg-white p-6 rounded-xl shadow-md mb-8">
+       <div className="flex flex-col md:flex-row gap-4">
           <div className="flex-1">
-            <label className="block text-sm font-medium mb-1">Select Year:</label>
+            <label className="block text-sm font-medium mb-1">
+              Select Year:
+            </label>
             <select
               value={currentYear}
               onChange={handleYearChange}
@@ -106,7 +115,9 @@ const Dashboard = () => {
           </div>
 
           <div className="flex-1">
-            <label className="block text-sm font-medium mb-1">Select Month:</label>
+            <label className="block text-sm font-medium mb-1">
+              Select Month:
+            </label>
             <select
               value={currentMonth}
               onChange={handleMonthChange}
@@ -132,16 +143,11 @@ const Dashboard = () => {
             </button>
           </div>
         </div>
-      </div>
+        </div>
+        }
+  
 
-      <div className="bg-white p-6 rounded-xl shadow">
-        <h2 className="text-xl font-semibold mb-2">Monthly Data</h2>
-        {monthlyData !== null ? (
-          <p>Task Count: {monthlyData}</p>
-        ) : (
-          <p className="text-gray-500">No data available.</p>
-        )}
-      </div>
+      
 
       <ToastContainer />
     </div>

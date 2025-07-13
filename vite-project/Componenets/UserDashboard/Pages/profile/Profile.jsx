@@ -9,14 +9,14 @@ import { GlobarRenderUrl } from '../../../../GlobalUrl';
 import { useNavigate } from 'react-router-dom';
 
 export default function Profile() {
-  const [user, setUser] = useState(null);
+   const [user, setUser] = useState(null);
   const [id, setId] = useState(null);
   const [err, seterr] = useState(null);
   const [succes, setsucess] = useState(null);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
-  useEffect(() => {
+   useEffect(() => {
     const userId = sessionStorage.getItem('Id');
     setId(userId);
     const fetchUser = async () => {
@@ -59,54 +59,58 @@ export default function Profile() {
     );
   }
 
+
+
   return (
-    <div className="container mx-auto p-4 md:p-6 lg:p-8">
-      <div className="flex flex-col lg:flex-row gap-4">
-        <div className="lg:w-1/3 xl:w-1/4 p-4 bg-white rounded shadow-md">
+    <div className="container mx-auto p-4 md:p-6 lg:p-8 bg-gradient-to-br from-blue-100 to-purple-100">
+      <div className="flex flex-col lg:flex-row gap-6">
+        <div className="lg:w-1/3 xl:w-1/4 p-6 bg-white rounded-2xl shadow-lg border-2 border-indigo-200">
           <div className="flex flex-col items-center">
             {user && user.ProfileImg ? (
               <img
                 src={user.ProfileImg}
                 alt={user.name}
-                className="w-24 h-24 rounded-full object-cover border-2 border-blue-500"
+                className="w-32 h-32 rounded-full object-cover border-4 border-indigo-400"
               />
             ) : (
-              <FaUserCircle size={90} color="#2d7ff9" />
+              <FaUserCircle size={100} className="text-indigo-500" />
             )}
-            <h2 className="text-xl font-bold mt-4">{user ? user.name : 'Loading...'}</h2>
-            <div className="flex items-center gap-2">
+            <h2 className="text-2xl font-bold mt-4 text-indigo-700">{user ? user.name : 'Loading...'}</h2>
+            <div className="flex items-center gap-2 mt-2 text-purple-600">
               <FaBriefcase />
               <span>{user && user.role ? user.role.charAt(0).toUpperCase() + user.role.slice(1) : 'User'}</span>
             </div>
-            <div className="flex flex-col gap-2 mt-4">
-              <span className="flex items-center gap-2">
-                <FaEnvelope />
-                {user ? user.email : ''}
+            <div className="flex flex-col gap-3 mt-6 w-full">
+              <span className="flex items-center gap-3 text-blue-600">
+                <FaEnvelope className="text-lg" />
+                <span className="text-blue-800">{user ? user.email : ''}</span>
               </span>
-              <span className="flex items-center gap-2">
-                <FaPhone />
-                {user && user.phone ? user.phone : '(not set)'}
+              <span className="flex items-center gap-3 text-blue-600">
+                <FaPhone className="text-lg" />
+                <span className="text-blue-800">{user && user.phone ? user.phone : '(not set)'}</span>
               </span>
             </div>
             {user && user.role !== 'admin' && (
               <button
-                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                className="mt-6 bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-600 hover:to-purple-700 text-white font-bold py-3 px-6 rounded-full transition duration-300 ease-in-out transform hover:scale-105"
                 onClick={handlerole}
               >
                 Become an Admin
               </button>
             )}
-            {succes && <div className="text-green-500">{succes}</div>}
-            {err && <div className="text-red-500">{err}</div>}
+            {succes && <div className="mt-4 text-green-600 font-semibold">{succes}</div>}
+            {err && <div className="mt-4 text-red-600 font-semibold">{err}</div>}
           </div>
         </div>
-        <div className="lg:w-2/3 xl:w-3/4 p-4">
-          <ProjectCard />
-          <div className="flex flex-col lg:flex-row gap-4 mt-4">
-            <div className="lg:w-1/2">
+        <div className="lg:w-2/3 xl:w-3/4 space-y-6">
+          <div className="bg-white rounded-2xl shadow-lg p-6 border-2 border-indigo-200">
+            <ProjectCard />
+          </div>
+          <div className="flex flex-col lg:flex-row gap-6">
+            <div className="lg:w-1/2 bg-white rounded-2xl shadow-lg p-6 border-2 border-indigo-200">
               <DetailedInformation />
             </div>
-            <div className="lg:w-1/2">
+            <div className="lg:w-1/2 bg-white rounded-2xl shadow-lg p-6 border-2 border-indigo-200">
               <Inbox />
             </div>
           </div>
