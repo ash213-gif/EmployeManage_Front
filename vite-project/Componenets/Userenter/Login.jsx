@@ -25,19 +25,18 @@ export default function Login() {
     try {
       const response = await axios.post(`${GlobarRenderUrl}/login`, data);
       toast.success(response.data.msg);
+      localStorage.setItem('token', response.data.token);
+        localStorage.setItem('user', response.data.user._id);
+        sessionStorage.setItem('Id', response.data.user._id);
       toast.error(null);
-      sessionStorage.setItem('Id', response.data.user._id);
       if (response.data.user.role === 'admin') {
         navigate('/admin')
       } else {
         navigate('/User');
       }
     } catch (error) {
-      toast.error(
-        error.response?.data?.msg ||
-        error.response?.data?.message ||
-        "Login failed"
-      );
+      
+      toast.error(error.response.data.msg  || response.data.msg || 'Login failed')
       toast.success(null);
     }
   }

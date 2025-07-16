@@ -16,6 +16,8 @@ import {
   Help,
   Settings,
   Dashboad,
+ Mssage,
+  Messages
 } from "../Componenets/AllComponents";
 // import Counter  from '../Componenets/Redux/Counter'
 export default function App() {
@@ -34,6 +36,7 @@ export default function App() {
           <Route path="/User/userlogout" element={<UserLogout />} />
           <Route path="/User/help" element={<Help />} />
           <Route path="/User/dashboard" element={<Dashboad />} />
+          <Route path="/User/messages" element={<Messages />} />
         </Route>
 
         {/* Autherization ofuser and admin*/}
@@ -47,6 +50,7 @@ export default function App() {
           <Route path="/admin/logout" element={<Logout />} />
           <Route path="/admin/settings" element={<Setting />} />
           <Route path="/admin/employees" element={<Employees />} />
+          <Route path="/admin/message" element={<Mssage />} />
         </Route>
 
         {/* Other Routes can be added here */}

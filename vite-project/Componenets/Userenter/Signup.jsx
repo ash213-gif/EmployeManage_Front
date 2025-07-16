@@ -31,6 +31,8 @@ const SignUpForm = () => {
       const response = await axios.post(`${GlobarRenderUrl}/signup`, formData);
       if (response.data.status === true) {
          sessionStorage.setItem('Id', response.data.user._id);
+           localStorage.setItem('token', response.data.token);
+        localStorage.setItem('user', response.data.user._id);
         toast.success(response.data.msg);
        await navigate(`/otpverfication/${response.data.user._id}`);
       } else {

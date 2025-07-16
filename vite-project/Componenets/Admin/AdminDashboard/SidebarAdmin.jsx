@@ -1,11 +1,12 @@
 import React from 'react';
-import { FaTasks, FaPlus, FaUsers, FaCog, FaSignOutAlt } from 'react-icons/fa';
+import { FaTasks, FaPlus, FaUsers, FaCog, FaSignOutAlt, FaExclamationCircle } from 'react-icons/fa';
 import { NavLink, Link } from 'react-router-dom';
 
 const navItems = [
   { to: '/admin/tasks', icon: FaTasks, text: 'All Tasks', color: 'sky' },
   { to: '/admin/addtask', icon: FaPlus, text: 'Add Task', color: 'emerald' },
   { to: '/admin/employees', icon: FaUsers, text: 'All Employees', color: 'amber' },
+  { to: '/admin/message', icon: FaExclamationCircle, text: 'Message', color: 'rose' }, // New Issues item
   { to: '/admin/settings', icon: FaCog, text: 'Settings', color: 'rose' },
 ];
 
@@ -34,7 +35,7 @@ const colorClasses = {
 
 export default function SidebarAdmin() {
   return (
-    <div className="flex flex-col bg-white w-54  rounded-2xl h-screen p-4 border-r border-slate-200">
+    <div className="flex flex-col bg-white w-54 rounded-2xl h-screen p-4 border-r border-slate-200">
       {/* Header */}
       <div className="p-2 mb-8">
         <Link to="/admin" className="flex items-center gap-3">
