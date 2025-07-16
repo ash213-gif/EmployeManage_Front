@@ -41,6 +41,9 @@ export default function Profile() {
         seterr(null);
         const updatedUser = await axios.get(`${GlobarRenderUrl}/getuser/${id}`);
         setUser(updatedUser.data.user);
+        if(updatedUser.data.user.role === 'admin') {
+          navigate('/admin')
+        }
       } else {
         seterr(response.data.msg);
         setsucess(null);

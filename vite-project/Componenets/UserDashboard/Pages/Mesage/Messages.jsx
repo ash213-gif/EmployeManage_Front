@@ -6,10 +6,10 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 export default function Message({ selectedAdmin }) {
-  const [message, setNewMessage] = useState(""); // Fixed naming convention
+  const [message, setNewMessage] = useState(""); 
   const userId = sessionStorage.getItem("Id");
-  const [receiveMessages, setReceiveMessages] = useState([]); // Fixed naming convention
-  const receiverId = selectedAdmin ? selectedAdmin.id : null; // Assuming selectedAdmin has an id
+  const [receiveMessages, setReceiveMessages] = useState([]);
+  const receiverId = selectedAdmin ? selectedAdmin.id : null; 
 
   const handleSubmitMessage = async () => {
     if (!message.trim()) {

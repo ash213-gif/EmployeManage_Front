@@ -13,6 +13,7 @@ export default function UserSideBar() {
     { path: '/User/settings', icon: FaCog, label: 'Settings' },
     { path: '/User/help', icon: FaQuestionCircle, label: 'Help' },
     { path: '/User/userlogout', icon: FaSignOutAlt, label: 'Logout' },
+    { path: '/User/messages', icon: FaSignOutAlt, label: 'Message' },
   ];
 
   return (

@@ -64,70 +64,74 @@ export default function Addtask() {
 
   return (
     <>
-      <div className="flex justify-center p-4">
-        <ToastContainer />
-        <div className="w-full max-w-md p-4 bg-white rounded shadow-md">
-          <h1 className="text-2xl font-bold mb-4">Add Task</h1>
-          <form onSubmit={handleSubmit}>
-            {fields.map((field, i) => (
-              <div key={i} className="mb-4">
-                <input
-                  type={field.type}
-                  name={field.name}
-                  value={task[field.name]}
-                  onChange={handleChange}
-                  placeholder={field.placeholder}
-                  className="w-full p-2 border border-gray-300 rounded"
-                  required
-                />
-              </div>
-            ))}
-            <div className="mb-4">
-              <label className="block text-sm font-medium mb-2">
-                Assign To:
-              </label>
-              <select
-                name="assignedTo"
-                value={task.assignedTo}
-                onChange={handleChange}
-                className="w-full p-2 border border-gray-300 rounded"
-                required
-              >
-                <option value="">Select Employee</option>
-                {employees.length > 0 ? (
-                  employees.map((employee) => (
-                    <option key={employee._id} value={employee._id}>
-                      {employee.name}
-                    </option>
-                  ))
-                ) : (
-                  <option disabled>No employees available</option>
-                )}
-              </select>
-            </div>
-            <div className="mb-4">
-              <label className="block text-sm font-medium mb-2">
-                Deadline:
-              </label>
+       <div className="min-h-screen flex items-center justify-center p-4">
+      <ToastContainer />
+      <div className="w-[370px] max-w-md bg-white rounded-4xl shadow-lg overflow-hidden">
+        <div className="bg-gradient-to-r from-blue-500 to-purple-600 p-3 ">
+          <h1 className="text-2xl font-bold text-white text-center">Add Task</h1>
+        </div>
+        <form onSubmit={handleSubmit} className="p-4 space-y-6">
+          {fields.map((field, i) => (
+            <div key={i}>
               <input
-                type="date"
-                name="deadline"
-                value={task.deadline}
+                type={field.type}
+                name={field.name}
+                value={task[field.name]}
                 onChange={handleChange}
-                className="w-full p-2 border border-gray-300 rounded"
+                placeholder={field.placeholder}
+                className="w-full p-1 border border-gray-300 rounded-md focus:ring-2 focus:ring-purple-400 focus:border-transparent transition"
                 required
               />
             </div>
-            <button
-              type="submit"
-              className="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+          ))}
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              Assign To:
+            </label>
+            <select
+              name="assignedTo"
+              value={task.assignedTo}
+              onChange={handleChange}
+              className="w-full p-1 border border-gray-300 rounded-md focus:ring-2 focus:ring-purple-400 focus:border-transparent transition"
+              required
             >
-              Submit
-            </button>
-          </form>
-        </div>
-        <Seacrch />
+              <option value="">Select Employee</option>
+              {employees.length > 0 ? (
+                employees.map((employee) => (
+                  <option key={employee._id} value={employee._id}>
+                    {employee.name}
+                  </option>
+                ))
+              ) : (
+                <option disabled>No employees available</option>
+              )}
+            </select>
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              Deadline:
+            </label>
+            <input
+              type="date"
+              name="deadline"
+              value={task.deadline}
+              onChange={handleChange}
+              className="w-full p-1 border border-gray-300 rounded-md focus:ring-2 focus:ring-purple-400 focus:border-transparent transition"
+              required
+            />
+          </div>
+          <div className="flex justify-center" >
+ <button
+            type="submit"
+            className="w-2/3 bg-gradient-to-r flex  justify-center from-pink-500 to-purple-600 text-white font-bold py-3 px-4 rounded-3xl hover:from-pink-600 hover:to-purple-700 transition duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-opacity-50"
+          >
+            Submit Task
+          </button>
+          </div>
+         
+        </form>
       </div>
+    </div>
     </>
   );
 }
