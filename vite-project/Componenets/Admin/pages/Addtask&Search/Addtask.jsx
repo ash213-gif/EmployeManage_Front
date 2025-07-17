@@ -41,10 +41,7 @@ export default function Addtask() {
     e.preventDefault();
 
     try {
-      const response = await axios.post(
-        "http://localhost:4040/createTask" || `${GlobarRenderUrl}/createTask`,
-        task
-      );
+      const response = await axios.post( `${GlobarRenderUrl}/createTask`, task);
       console.log(response);
       if (response.data.status) {
         toast.success(response.data.msg);
