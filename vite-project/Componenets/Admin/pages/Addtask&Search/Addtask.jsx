@@ -37,27 +37,28 @@ export default function Addtask() {
     setTask({ ...task, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+const handleSubmit = async (e) => {
+  e.preventDefault();
 
-    try {
-      const response = await axios.post( `${GlobarRenderUrl}/createTask`, task);
-      console.log(response);
-      if (response.data.status) {
-        toast.success(response.data.msg);
-        setTask({ title: "", description: "", assignedTo: "", deadline: "" });
-      } else {
-        toast.error(response.data.msg || "Failed to add task");
-      }
-
-      if (response.data.data && response.data.data._id) {
-        sessionStorage.setItem("UserId", response.data.data._id);
-        console.log("UserId stored in sessionStorage:", response.data.data._id);
-      }
-    } catch (error) {
-      toast.error(error.response?.data?.msg || "Error occurred");
+  try {
+    const response = await axios.post(`${GlobarRenderUrl}/createTask`, task);
+    console.log(response);
+    if (response.data.status) {
+      toast.success(response.data.msg);
+      setTask({ title: "", description: "", assignedTo: "", deadline: "" });
+    } else {
+      toast.error(response.data.msg || "Failed to add task");
     }
-  };
+
+    if (response.data.data && response.data.data._id) {
+      sessionStorage.setItem("UserId", response.data.data._id);
+      console.log("UserId stored in sessionStorage:", response.data.data._id);
+    }
+  } catch (error) {
+    console.error("Error occurred during task submission:", error); // Log error details
+    toast.error(error.response?.data?.msg || "Error occurred");
+  }
+};
 
   return (
     <>
