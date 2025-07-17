@@ -5,12 +5,12 @@ import { GlobarRenderUrl } from '../../GlobalUrl'
 import { FaEnvelope, FaLock } from 'react-icons/fa' 
 import { ToastContainer,toast } from 'react-toastify'
 
+
 export default function Login() {
   const [data, setdata] = useState({
     email: "",
     password: ""
   })
-
 
   const navigate = useNavigate();
 
@@ -23,7 +23,7 @@ export default function Login() {
     e.preventDefault();
   
     try {
-      const response = await axios.post(`${GlobarRenderUrl}/login`, data);
+      const response = await axios.post( `${GlobarRenderUrl}/login`, data);
       toast.success(response.data.msg);
       localStorage.setItem('token', response.data.token);
         localStorage.setItem('user', response.data.user._id);

@@ -106,9 +106,11 @@ export default function Profile() {
           </div>
         </div>
         <div className="lg:w-2/3 xl:w-3/4 space-y-6">
-          <div className="bg-white rounded-2xl shadow-lg p-6 border-2 border-indigo-200">
+
+          <div className="   ">
             <ProjectCard />
           </div>
+
           <div className="flex flex-col lg:flex-row gap-6">
             <div className="lg:w-1/2 bg-white rounded-2xl shadow-lg p-6 border-2 border-indigo-200">
               <DetailedInformation />

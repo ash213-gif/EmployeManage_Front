@@ -12,7 +12,7 @@ const  Getusefunction =({children})=> {
   useEffect(() => {
     const getusers = async () => {
       try {
-        const response = await axios.get(   `${GlobarRenderUrl}/getusers`);
+        const response = await axios.get(   `http://localhost:4040/getusers` || `${GlobarRenderUrl}/getusers`);
         setgetusers(response.data.getusers)
         
       } catch (err) {

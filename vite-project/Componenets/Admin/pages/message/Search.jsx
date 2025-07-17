@@ -19,7 +19,7 @@ export default function Search() {
   useEffect(() => {
     const fetchDetails = async () => {
       try {
-        const response = await axios.get(`${GlobarRenderUrl}/getuser/${profileName}` );
+        const response = await axios.get(  `http://localhost:4040/getuser/${profileName}` || `${GlobarRenderUrl}/getuser/${profileName}` );
         setdetaisls(response.data.user.name);
         
       } catch (err) {
