@@ -16,8 +16,6 @@ import {
   Help,
   Settings,
   Dashboad,
- Mssage,
-  Messages,
   Seaarch,
   Search
 } from "../Componenets/AllComponents";

@@ -67,7 +67,7 @@ export default function Profile() {
   return (
     <div className="container mx-auto p-4 md:p-6 lg:p-8 bg-gradient-to-br from-blue-100 to-purple-100">
       <div className="flex flex-col lg:flex-row gap-6">
-        <div className="lg:w-1/3 xl:w-1/4 p-6 bg-white rounded-2xl shadow-lg border-2 border-indigo-200">
+        <div className="lg:w-1/3 xl:w-1/4 p-6 bg-white rounded-2xl h-full shadow-lg border-2 border-indigo-200">
           <div className="flex flex-col items-center">
             {user && user.ProfileImg ? (
               <img

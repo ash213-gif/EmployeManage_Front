@@ -12,7 +12,6 @@ export { default as Setting } from './Admin/pages/Setting';
 export { default as Sidebar } from './Admin/AdminDashboard/SidebarAdmin';
 export { default as Employees } from './Admin/pages/Employees';
 export { default as Alltask } from './Admin/pages/Alltask';
-export { default as Mssage } from './Admin/pages/message/Mssage';
 export { default as Search } from './Admin/pages/message/Search';
 
 //  UserDashBoard Routes 
@@ -25,5 +24,4 @@ export { default as Settings } from './UserDashboard/Pages/Settings'
 export { default as UserLogout } from './UserDashboard/Pages/UserLogout'
 export { default as Help } from './UserDashboard/Pages/Help'
 export { default as Dashboad } from './UserDashboard/Pages/Dashboad'
-export { default as Messages } from './UserDashboard/Pages/Mesage/Messages'
 export { default as Seaarch } from './UserDashboard/Pages/Mesage/Seaarch'
